@@ -1,0 +1,80 @@
+<%= render partial: 'header' %>
+<div>
+
+
+  <div class="col-xs-6">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </div>
+
+  <div class="col-xs-6 text-right">
+    <button id="startTransferBtn" type="button" class="btn btn-primary"><i class="fui-plus"></i> Transfer Bambeuros
+    </button>
+  </div>
+
+  <div id="userInfoContainer">
+    <%= render partial: 'user_info' %>
+
+  </div>
+  <div id="transferContainer" class="col-xs-12">
+    <%= render partial: 'transfers' %>
+
+
+  </div>
+  <!-- Modal -->
+  <div id="transferModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Transfer</h4>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid transfer-div">
+            <div class="col-xs-8">
+              <label>Transfer To:</label>
+
+              <select class="form-control select select-primary transfer-input" name="to_user_id">
+                <% @users.each do |user| %>
+                    <option value="<%= user[:id] %>"><%= user[:name] %> (<%= user[:email] %>)</option>
+                <% end %>
+              </select>
+            </div>
+            <div class="col-xs-4">
+              <label>Amount:</label>
+              <input class="form-control transfer-input" type="number" name="value" step="any" value="0.00" min="0.00" max="<%= @current_user.balance %>"/>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="submitTransfer" type="button" class="btn btn-primary">Transfer</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="errorModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title text-danger">Error</h4>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <p class="error-message"></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+    load();
+</script>

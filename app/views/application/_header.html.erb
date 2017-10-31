@@ -1,0 +1,13 @@
+<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+      <span class="sr-only">Toggle navigation</span>
+    </button>
+    <a class="navbar-brand" href="#">Bambank</a>
+  </div>
+  <div class="collapse navbar-collapse text-right" id="navbar-collapse-01">
+
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+
+  </div><!-- /.navbar-collapse -->
+</nav>

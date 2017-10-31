@@ -1,0 +1,28 @@
+<% @transfers.each do |transaction| %>
+    <div class="row">
+      <% if transaction[:is_debit] %>
+          <div class="col-xs-4">
+            To: <%= transaction[:to_user_name] %>
+          </div>
+      <% elsif transaction[:is_promotion] %>
+          <div class="col-xs-4">
+            <%= transaction[:promotion_label] %>
+          </div>
+      <% else %>
+          <div class="col-xs-4">
+            From: <%= transaction[:from_user_name] %>
+          </div>
+      <% end %>
+      <div class="col-xs-4">
+        Amount: <%= transaction[:value_formatted] %>
+      </div>
+      <div class="col-xs-4">
+        Transaction Time: <%= transaction[:created_at_formatted] %>
+      </div>
+    </div>
+
+<% end %>
+
+<% if @transfers.length == 0 %>
+    <h5 class="text-center">You haven't made any transactions yet</h5>
+<% end %>
